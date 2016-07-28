@@ -1,7 +1,7 @@
 'use strict';
 
-describe('HotelController', function() {
-  beforeEach(module('myApp.hotel'));
+describe('TiketController', function() {
+  beforeEach(module('myApp.tiket'));
 
   var $controller;
 
@@ -12,7 +12,7 @@ describe('HotelController', function() {
   describe('sc.guestCount', function() {
     it('has 10 elements of data', function() {
       var $scope = {};
-      var controller = $controller('HotelController', { $scope: $scope });
+      var controller = $controller('TiketController', { $scope: $scope });
       expect($scope.guestCount().length).toEqual(10);
     });
   });

@@ -1,0 +1,94 @@
+<style>
+	h2 {
+		text-align: center;
+	}
+
+	md-steppers md-content {
+		padding: 24px;
+	}
+
+	md-input-container.md-icon-float > md-icon {
+		top: 8px;
+	}
+
+	.botmargin {
+		margin-bottom: 30px;
+	}
+</style>
+
+<div layout="row" layout-align="center start">
+	<md-card flex="30">
+		<md-toolbar md-scroll-shrink>
+	    <div class="md-toolbar-tools">Pemesanan Tiket Pesawat</div>
+	  </md-toolbar>
+	  <md-card-content layout="column">
+	  <!-- Content Start -->
+	  	<!-- Nama Pemesan -->
+	   	<md-input-container>
+        <label>Pemesan</label>
+        <input ng-model="pemesan">
+      </md-input-container>
+      <!-- Tujuan -->
+      <md-input-container flex>
+		    <md-icon class="md-primary">flight_takeoff</md-icon>
+        <md-select ng-model="takeoff">
+        	<md-option class="md-caption" selected="selected" disabled="disabled" value="0">Airport Keberangkatan</md-option>
+          <md-option ng-repeat="data in tujuan" ng-value="data">
+            {{data.txt}}
+          </md-option>
+        </md-select>
+      </md-input-container>
+      <!-- Tujuan -->
+      <md-input-container class="botmargin" flex>
+		    <md-icon class="md-primary">flight_land</md-icon>
+        <md-select ng-model="landing">
+        	<md-option class="md-caption" selected="selected" disabled="disabled" value="0">Airport Tujuan</md-option>
+          <md-option ng-repeat="data in tujuan" ng-value="data">
+            {{data.txt}}
+          </md-option>
+        </md-select>
+       </md-input-container>
+      <!-- Kelas Penerbangan -->
+      <div>
+		    <md-radio-group ng-model="kelas">
+		      <md-radio-button ng-repeat="jenis in tipe" ng-value="jenis" class="md-primary"> {{jenis.txt}} </md-radio-button>
+		    </md-radio-group>
+	    </div>
+	    <!-- Pilih tanggal berangkat / kembali -->
+      <div class="botmargin" layout="row" layout-align="center">
+	    	<md-datepicker flex="50" ng-model="pergi" md-placeholder="Pergi" md-open-on-focus></md-datepicker>
+  			<md-datepicker flex="50" ng-model="pulang" md-placeholder="Pulang" md-open-on-focus></md-datepicker>
+	    </div>
+	    <!-- Jumlah Penumpang -->
+	    <div layout="row">
+	    	<md-input-container>
+	        <label>Dewasa</label>
+	        	<md-icon class="md-primary">face</md-icon>
+	        <input ng-model="dewasa">
+	      </md-input-container>
+	      <md-input-container>
+	        <label>Anak-anak</label>
+	        	<md-icon class="md-primary">child_care</md-icon>
+	        <input ng-model="anak">
+	      </md-input-container>
+	    </div>
+	    <!-- Bagasi -->
+	    <div layout="row">
+	    <md-input-container flex="50" layout-align="left">
+		    <md-icon class="md-primary">work</md-icon>
+		    <md-select ng-model="berat">
+		    	<md-option class="md-caption" selected="selected" disabled="disabled" value="0">Berat Bagasi</md-option>
+          <md-option ng-repeat="item in bagasi" ng-value="item">
+            {{item.txt}}
+          </md-option>
+        </md-select>
+       </md-input-container>
+	    </div>
+    <!-- Content End -->
+	  </md-card-content>
+	  <md-card-actions layout="row" layout-align="end center">
+	    <md-button>Ulangi</md-button>
+	    <md-button ng-click="hitung()" class="md-raised md-primary">Lanjutkan</md-button>
+	  </md-card-actions>
+	</md-card>
+</div>

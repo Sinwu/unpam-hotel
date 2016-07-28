@@ -13,7 +13,7 @@ module.exports = function(config) {
       'bower_components/angular-material/angular-material.js',
       'bower_components/md-steppers/dist/md-steppers.min.js',
       'components/**/*.js',
-      'hotel/**/*.js'
+      'tiket/**/*.js'
     ],
 
     autoWatch: true,
