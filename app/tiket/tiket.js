@@ -33,11 +33,23 @@ angular.module('myApp.tiket', ['ngRoute', 'ngMaterial', 'md-steppers'])
     	{'val':2,'txt':'First Class','multi':1.5}
     ];
 
+    sc.jumlahPenumpang = function() {
+        if(sc.anak && sc.dewasa) {
+            var dewasa = sc.dewasa ? sc.dewasa : 0
+            var anak = sc.anak ? sc.anak : 0
+            return (anak + dewasa) + " orang";
+        }
+    }
 
     sc.hitung = function() {
-    	sc.biaya.tujuan = sc.kelas.multi * sc.landing.harga
-        console.log(sc.biaya.tujuan)
+        var dewasa = sc.dewasa ? sc.dewasa : 0
+        var anak = sc.anak ? sc.anak : 0
+        var biayaTiket = sc.kelas.multi * sc.landing.harga
 
+    	sc.biaya.tujuan = ((anak * 0.5) * biayaTiket) + (dewasa * biayaTiket)
+        sc.biaya.bagasi = sc.berat.harga * sc.kelas.multi
+
+        sc.biaya.total = sc.biaya.tujuan + sc.biaya.bagasi
         sc.selesaiHitung = true
     }
 }]);

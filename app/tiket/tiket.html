@@ -14,6 +14,10 @@
 	.botmargin {
 		margin-bottom: 30px;
 	}
+
+	.md-subheader.result {
+		display: inline-block;
+	}
 </style>
 
 <div layout="row" layout-align="center start">
@@ -62,13 +66,13 @@
 	    	<md-input-container flex="45">
 	        <label>Dewasa</label>
 	        	<md-icon class="md-primary">face</md-icon>
-	        <input ng-model="dewasa">
+	        <input type="number" ng-model="dewasa">
 	      </md-input-container>
 	      <div flex></div>
 	      <md-input-container flex="45">
 	        <label>Anak-anak</label>
 	        	<md-icon class="md-primary">child_care</md-icon>
-	        <input ng-model="anak">
+	        <input type="number" ng-model="anak">
 	      </md-input-container>
 	    </div>
 	    <!-- Bagasi -->
@@ -87,8 +91,13 @@
 	  </md-card-content>
 
 	  <md-card-content ng-show="selesaiHitung" layout="column">
-	  	<h4>Nama Pemesan: {{pemesan}}</h4>
-	  	<h4>Biaya Perjalanan ({{landing.txt}} - {{kelas.txt}}): {{biaya.tujuan}}</h4>
+	  	<span><span class="md-subheader result">Nama Pemesan:</span> {{pemesan}}</span>
+	  	<div></div>
+	  	<span><span class="md-subheader result">Tanggal Berangkat: </span> {{pergi | date:'dd/MM/yyyy'}}</span>
+	  	<span><span class="md-subheader result">Jumlah Penumpang: </span> {{jumlahPenumpang()}}</span>
+	  	<span><span class="md-subheader result">Biaya Perjalanan ({{landing.txt}} - {{kelas.txt}}): </span> {{biaya.tujuan}}</span>
+	  	<span><span class="md-subheader result">Biaya Bagasi ({{berat.txt}}): </span> {{biaya.bagasi}}</span>
+	  	<span><span class="md-subheader result">Biaya Total:</span> {{biaya.total}}</span>
 	  </md-card-content>
 
 	  <md-card-actions ng-hide="selesaiHitung" layout="row" layout-align="end center">
