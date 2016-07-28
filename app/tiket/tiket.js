@@ -10,6 +10,8 @@ angular.module('myApp.tiket', ['ngRoute', 'ngMaterial', 'md-steppers'])
 }])
 
 .controller('TiketController', ['$scope', function(sc) {
+    sc.selesaiHitung = false
+    sc.biaya = { 'total': 0, 'tujuan': 0, 'bagasi': 0 }
     sc.tujuan = [
     	{'val':0,'txt':'Jakarta','harga':400000},
     	{'val':1,'txt':'Bali','harga':500000},
@@ -33,8 +35,9 @@ angular.module('myApp.tiket', ['ngRoute', 'ngMaterial', 'md-steppers'])
 
 
     sc.hitung = function() {
-    	var biayaKelas = sc.kelas.multi
+    	sc.biaya.tujuan = sc.kelas.multi * sc.landing.harga
+        console.log(sc.biaya.tujuan)
 
-    	alert(biayaKelas)
+        sc.selesaiHitung = true
     }
 }]);
