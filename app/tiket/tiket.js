@@ -10,8 +10,9 @@ angular.module('myApp.tiket', ['ngRoute', 'ngMaterial', 'md-steppers'])
 }])
 
 .controller('TiketController', ['$scope', function(sc) {
+    var self = this
     sc.selesaiHitung = false
-    sc.biaya = { 'total': 0, 'tujuan': 0, 'bagasi': 0 }
+    sc.biaya = { 'total': 0, 'tujuan': 0, 'bagasi': 0, 'diskon': 0 }
     sc.tujuan = [
     	{'val':0,'txt':'Jakarta','harga':400000},
     	{'val':1,'txt':'Bali','harga':500000},
@@ -41,15 +42,29 @@ angular.module('myApp.tiket', ['ngRoute', 'ngMaterial', 'md-steppers'])
         }
     }
 
+    sc.hariSebelum = function() {
+        if(!sc.pergi) return
+        return self.selisihTanggal(sc.pergi, new Date()) + " hari"
+    }
+
+    self.selisihTanggal = function(endDate, startDate) {
+        var timeDiff = Math.abs(endDate - startDate)
+        var diffDays = Math.ceil(timeDiff / (1000 * 3600 * 24))
+        return diffDays
+    }
+
     sc.hitung = function() {
         var dewasa = sc.dewasa ? sc.dewasa : 0
         var anak = sc.anak ? sc.anak : 0
         var biayaTiket = sc.kelas.multi * sc.landing.harga
 
     	sc.biaya.tujuan = ((anak * 0.5) * biayaTiket) + (dewasa * biayaTiket)
+
+        if(self.selisihTanggal(sc.pergi, new Date()) > 7) sc.biaya.diskon = 0.1 * sc.biaya.tujuan
+
         sc.biaya.bagasi = sc.berat.harga * sc.kelas.multi
 
-        sc.biaya.total = sc.biaya.tujuan + sc.biaya.bagasi
+        sc.biaya.total = sc.biaya.tujuan + sc.biaya.bagasi - sc.biaya.diskon
         sc.selesaiHitung = true
     }
 }]);

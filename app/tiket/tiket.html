@@ -96,6 +96,7 @@
 	  	<span><span class="md-subheader result">Tanggal Berangkat: </span> {{pergi | date:'dd/MM/yyyy'}}</span>
 	  	<span><span class="md-subheader result">Jumlah Penumpang: </span> {{jumlahPenumpang()}}</span>
 	  	<span><span class="md-subheader result">Biaya Perjalanan ({{landing.txt}} - {{kelas.txt}}): </span> {{biaya.tujuan}}</span>
+	  	<span ng-show="biaya.diskon > 0"><span class="md-subheader result">Diskon Booking ({{hariSebelum()}}): </span> {{biaya.diskon}}</span>
 	  	<span><span class="md-subheader result">Biaya Bagasi ({{berat.txt}}): </span> {{biaya.bagasi}}</span>
 	  	<span><span class="md-subheader result">Biaya Total:</span> {{biaya.total}}</span>
 	  </md-card-content>
